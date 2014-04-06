@@ -1,0 +1,117 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title><%= __('title')%></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css /views/public/stylesheets/vendor.css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/jquery.ui/themes/base/jquery.ui.datepicker.css">
+    <link rel="stylesheet" href="/bower_components/jquery.ui/themes/base/jquery.ui.theme.css">
+    <!-- endbuild -->
+    <!-- build:css /views/public/stylesheets/main.css -->
+    <link rel="stylesheet" href="/public/stylesheets/main.css">
+    <!-- endbuild -->
+</head>
+<body>
+
+<div class="jumbotron">
+    <h1><%= __('index.title')%></h1>
+
+    <p><%= __('index.line1')%></p>
+
+    <p><%= __('index.line2')%></p>
+
+    <p><%= __('index.line3')%><input type="text" id="datepicker"></p>
+
+    <p><a class="btn btn-primary btn-lg" id="node1Link" role="button" href="template_rapport.html?noeud=noeud_1"><%=
+        __('index.node1')%></a></p>
+
+    <p><a class="btn btn-primary btn-lg" id="node2Link" role="button" href="template_rapport.html?noeud=noeud_2"><%=
+        __('index.node2')%></a></p>
+
+</div>
+
+<!-- build:js /views/public/javascripts/plugins.js -->
+<!-- bower:js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/jquery.ui/ui/jquery.ui.core.js"></script>
+<script src="/bower_components/jquery.ui/ui/jquery.ui.datepicker.js"></script>
+<script src="/bower_components/bootstrap/js/affix.js"></script>
+<script src="/bower_components/bootstrap/js/alert.js"></script>
+<script src="/bower_components/bootstrap/js/dropdown.js"></script>
+<script src="/bower_components/bootstrap/js/tooltip.js"></script>
+<script src="/bower_components/bootstrap/js/modal.js"></script>
+<script src="/bower_components/bootstrap/js/transition.js"></script>
+<script src="/bower_components/bootstrap/js/button.js"></script>
+<script src="/bower_components/bootstrap/js/popover.js"></script>
+<script src="/bower_components/bootstrap/js/carousel.js"></script>
+<script src="/bower_components/bootstrap/js/scrollspy.js"></script>
+<script src="/bower_components/bootstrap/js/collapse.js"></script>
+<script src="/bower_components/bootstrap/js/tab.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js /views/public/javascripts/main.js -->
+<script src="/public/javascripts/main.js"></script>
+<!-- endbuild -->
+
+<script>
+    // initialisation du datepicker
+    var files = getFilesInCookie();
+    function selectDateLogValid(date) {
+        for (var i = 0; i < files.length; i++) {
+            var dateFile = formatDate(files[i], "00:00:00")
+            if (date.getDate() === dateFile.getDate() && date.getMonth() === dateFile.getMonth() && date.getYear() === dateFile.getYear()) {
+                return [true, 'highlight'];
+            }
+        }
+        return [false, ''];
+    }
+    $("#datepicker").datepicker({
+        dateFormat: 'dd/mm/yy',
+        inline: true,
+        nextText: '',
+        prevText: '',
+        numberOfMonths: [1, 1],
+        dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+        beforeShowDay: selectDateLogValid
+    });
+
+    if (window.location.pathname.split('/').length === 3) {
+        var date = formatDateForDatePicker(window.location.pathname.split('/')[2], true);
+        $("#datepicker").val(date);
+    }
+    $('#node1Link').click(function () {
+        var date = formatDateForDatePicker($(datepicker).val(), false);
+        $('#node1Link').attr('href', '/template_rapport/' + date + '/node1')
+    });
+    $('#node2Link').click(function () {
+        var date = formatDateForDatePicker($(datepicker).val(), false);
+        $('#node2Link').attr('href', '/template_rapport/' + date + '/node2')
+    });
+
+    $("#datepicker").change(function () {
+        if ($("#datepicker").val() !== '') {
+            $('#node1Link').attr('disabled', false);
+            $('#node2Link').attr('disabled', false);
+        }
+    });
+    if ($("#datepicker").val() === '') {
+        $('#node1Link').attr('disabled', true);
+        $('#node2Link').attr('disabled', true);
+    }
+
+</script>
+</body>
+</html>

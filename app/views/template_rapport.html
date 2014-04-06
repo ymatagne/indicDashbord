@@ -1,0 +1,249 @@
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <title><%= __('title')%></title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css /views/public/stylesheets/vendor.css -->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/jquery.ui/themes/base/jquery.ui.datepicker.css">
+    <link rel="stylesheet" href="/bower_components/jquery.ui/themes/base/jquery.ui.theme.css">
+    <!-- endbuild -->
+    <!-- build:css /views/public/stylesheets/main.css -->
+    <link rel="stylesheet" href="/public/stylesheets/main.css">
+    <!-- endbuild -->
+</head>
+<body>
+
+
+<div class="filter">
+</div>
+<div id="progressBar" class="progress progress-striped active">
+    <h2><%= __('template.loading')%></h2>
+
+    <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+         style="width: 100%">
+        <span class="sr-only">100% Complete</span>
+    </div>
+</div>
+
+<div class="page-header">
+    <h1><%= __('template.page.titre')%><span id="titreDeLaPage"></span></h1>
+</div>
+
+<ol class="breadcrumb">
+    <li><a href="/index"><%= __('template.link.index')%></a></li>
+    <li class="active" id="breadcrumb">Data</li>
+</ol>
+
+<ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#statistique"><%= __('template.tab1')%></a></li>
+    <li><a href="#graphUser"><%= __('template.tab2')%></a></li>
+    <li><a href="#graphiqueTapestry"><%= __('template.tab3')%></a></li>
+    <li><a href="#graphThreadPool"><%= __('template.tab4')%></a></li>
+    <li><a href="#graphJDBC"><%= __('template.tab5')%></a></li>
+    <li><a href="#graphApache"><%= __('template.tab6')%></a></li>
+</ul>
+
+<div class="tab-content">
+
+    <div class="tab-pane active" id="statistique">
+        <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <div class="panel-heading"><%= __('template.head')%></div>
+
+            <!-- Table -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th><%= __('template.col1')%></th>
+                    <th><%= __('template.col2')%></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><%= __('template.indicateur1')%></td>
+                    <td>
+                        <div id="resume_nbrUsersMax"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><%= __('template.indicateur2')%></td>
+                    <td>
+                        <div id="resume_nbrUsersHourMax"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><%= __('template.indicateur3')%></td>
+                    <td>
+                        <div id="resume_nbrTapestryMax"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><%= __('template.indicateur4')%></td>
+                    <td>
+                        <div id="resume_nbrThreadBusyMax"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><%= __('template.indicateur5')%></td>
+                    <td>
+                        <div id="resume_nbrThreadUtilise"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><%= __('template.indicateur6')%></td>
+                    <td>
+                        <div id="resume_nbrMaxConnexionJDBC"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><%= __('template.indicateur7')%></td>
+                    <td>
+                        <div id="resume_nbrMaxConnexionIdle"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><%= __('template.indicateur8')%></td>
+                    <td>
+                        <div id="resume_nbrMaxConnexionBusy"></div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>9</td>
+                    <td><%= __('template.indicateur9')%></td>
+                    <td>
+                        <div id="resume_nbrRequete1s"></div>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><%= __('template.indicateur10')%></td>
+                    <td>
+                        <div id="resume_nbrRequete2s"></div>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td>11</td>
+                    <td><%= __('template.indicateur11')%></td>
+                    <td>
+                        <div id="resume_nbrRequete10s"></div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="tab-pane" id="graphUser">
+        <div class="well well-sm well-perso"><%= __('graph.users.description')%></div>
+
+    </div>
+
+    <div class="tab-pane" id="graphiqueTapestry">
+        <div class="well well-sm well-perso"><%= __('graph.tapestry.description')%></div>
+        <div id="tabNomPage"></div>
+        <div id="graphTapestry"></div>
+    </div>
+
+    <div class="tab-pane" id="graphJDBC">
+        <div class="well well-sm well-perso"><%= __('graph.pool.description')%></div>
+    </div>
+
+    <div class="tab-pane" id="graphThreadPool">
+        <div class="well well-sm well-perso"><%= __('graph.thread.description')%></div>
+    </div>
+
+    <div class="tab-pane" id="graphApache">
+        <div class="well well-sm well-perso"><%= __('graph.apache.description')%></div>
+    </div>
+
+</div>
+
+
+<!-- build:js /views/public/javascripts/d3.js -->
+<script src="/bower_components/d3/d3.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /views/public/javascripts/plugins.js -->
+<script src="/bower_components/jquery/dist/jquery.js"></script>
+<script src="/bower_components/jquery.ui/ui/jquery.ui.core.js"></script>
+<script src="/bower_components/jquery.ui/ui/jquery.ui.datepicker.js"></script>
+<script src="/bower_components/bootstrap/js/affix.js"></script>
+<script src="/bower_components/bootstrap/js/alert.js"></script>
+<script src="/bower_components/bootstrap/js/dropdown.js"></script>
+<script src="/bower_components/bootstrap/js/tooltip.js"></script>
+<script src="/bower_components/bootstrap/js/modal.js"></script>
+<script src="/bower_components/bootstrap/js/transition.js"></script>
+<script src="/bower_components/bootstrap/js/button.js"></script>
+<script src="/bower_components/bootstrap/js/popover.js"></script>
+<script src="/bower_components/bootstrap/js/carousel.js"></script>
+<script src="/bower_components/bootstrap/js/scrollspy.js"></script>
+<script src="/bower_components/bootstrap/js/collapse.js"></script>
+<script src="/bower_components/bootstrap/js/tab.js"></script>
+<!-- endbuild -->
+
+<!-- build:js /views/public/javascripts/main.js -->
+<script src="/public/javascripts/main.js"></script>
+<!-- endbuild -->
+
+
+<script>
+    // On affiche la bare de chargement
+    progressBarEvolution(true);
+
+    // On recuperer les parametre dans l'url
+    var nomDuNoeud = getNodeValueInUrl(window.location.pathname);
+    var dateAnalyse = getDateAnalyseInUrl(window.location.pathname)
+
+    if (nomDuNoeud === null || dateAnalyse === null) {
+        window.location.replace('/index');
+    }
+    updatePageTitre(nomDuNoeud, dateAnalyse);
+    $('#myTab a').click(function (e) {
+        e.preventDefault();
+        $(this).tab('show');
+        closePopins();
+    });
+</script>
+
+<!-- build:js /views/public/javascripts/graphs.js -->
+<script src="/public/javascripts/loginMonitoring.js"></script>
+<script src="/public/javascripts/tapestryMonitoring.js"></script>
+<script src="/public/javascripts/databaseMonitoring.js"></script>
+<script src="/public/javascripts/threadMonitoring.js"></script>
+<script src="/public/javascripts/apacheMonitoring.js"></script>
+<!-- endbuild -->
+</body>
+</html>

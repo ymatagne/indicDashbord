@@ -1,0 +1,34 @@
+default:
+  http:
+    port: 3000
+  mailer:
+    service: 'Gmail'
+    user: 'username@gmail.com'
+    password: 'password'
+    fromUser: 'ME ✔ <username@gmail.com'
+    toUserOK: 'username@gmail.com'
+    toUserKO: 'username@gmail.com'
+    sujectMailOK: ' Les indicateurs du {0} sont disponibles'
+    sujectMailKO: ' Un problème a eu lieu lors de la mise à jour des indicateurs'
+  cron:
+    time: '0 23 * * * *'
+  shell:
+    dirFile: 'exemples'
+    sftpServer: '<sftp_username>@<sftp_id>'
+production:
+  http:
+    port: 3000
+  mailer:
+    service: 'Gmail'
+    user: 'username@gmail.com'
+    password: 'password'
+    fromUser: 'ME ✔ <username@gmail.com'
+    toUserOK: 'username@gmail.com'
+    toUserKO: 'username@gmail.com'
+    sujectMailOK: ' Les indicateurs du {0} sont disponibles'
+    sujectMailKO: ' Un problème a eu lieu lors de la mise à jour des indicateurs'
+  cron:
+    time: '0 23 * * * *'
+  shell:
+    dirFile: 'exemples'
+    sftpServer: '<sftp_username>@<sftp_id>'
