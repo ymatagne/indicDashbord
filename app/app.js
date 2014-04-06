@@ -5,10 +5,17 @@ var express = require('express')
     , nodemailer = require("nodemailer")
     , config = require('yaml-config')
     , routes = require('./routes')
-    , i18n = require('./i18n.js');
+    , i18n = require('./i18n.js')
+    , exec = require('child_process').exec;
 
 // init config file
 settings = config.readConfig('./settings.yml'); // path from your app root without slash
+
+//Permet de logger les erreurs du serveur
+function logErrors(err, req, res, next) {
+    console.error(err.stack);
+    next(err);
+}
 
 // init serveur HTTP
 var app = express();
@@ -16,6 +23,8 @@ app.set('port', settings.http.port);
 app.use(i18n);
 app.use(app.router);
 app.use(express.urlencoded());
+app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+app.use(logErrors);
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
@@ -71,7 +80,7 @@ new cronJob(settings.cron.time, function () {
         }
 
         // Lancement du script shell pour recuperer les fichiers via sftp.
-        exec('./scripts/getFilesOfSFTP.sh ' + settings.shell.sftpServer + ' ' + settings.shell.dirFile,
+        exec(' sh ./scripts/getFilesOfSFTP.sh ' + settings.shell.sftpServer + ' ' + settings.shell.dirFile,
             function (error, stdout, stderr) {
                 console.log('stdout: ' + stdout);
                 console.log('stderr: ' + stderr);

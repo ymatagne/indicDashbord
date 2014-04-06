@@ -144,6 +144,7 @@ EOF
 	mv access.log access_full.log
 	rm -rf access.log
 	cat access_full.log | awk -F' ' '{gsub("\\[","",$4);sub(":"," ",$4); print $1";"$4";"$9";"$11";"$7}' >> access.log
+	rm -rf access_full.log
 	#Ajout des entetes aux fichiers CSV
     echo "ip;date;retour;temps;page" >> temp
     cat access.log >> temp
@@ -167,6 +168,7 @@ EOF
 	mv access.log access_full.log
 	rm -rf access.log
 	cat access_full.log | awk -F' ' '{gsub("\\[","",$4);sub(":"," ",$4); print $1";"$4";"$9";"$11";"$7}' >> access.log
+	rm -rf access_full.log
 	#Ajout des entetes aux fichiers CSV
 	echo "ip;date;retour;temps;page" >> temp
     cat access.log >> temp
