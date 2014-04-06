@@ -60,14 +60,14 @@ new cronJob(settings.cron.time, function () {
             from: settings.mailer.fromUser,
             to: settings.mailer.toUserOK,
             subject: settings.mailer.sujectMailOK,
-            html: '<b>Hello world ✔</b>'
+            html: 'Les indicateurs sont disponibles'
         }
 
         var mailOptionsGetFilesKO = {
             from: settings.mailer.fromUser,
             to: settings.mailer.toUserKO,
             subject: settings.mailer.sujectMailKO,
-            html: '<b>Hello world ✔</b>'
+            html: 'Les indicateurs ne sont  pas disponibles car une erreur est intervenue.'
         }
 
         // Lancement du script shell pour recuperer les fichiers via sftp.

@@ -80,9 +80,18 @@ function get_log_tomcat_1(){
         quit
 	EOF
     #Ajout des entetes aux fichiers CSV
-    sed -i '1idate;dateHeure;login;ip' monitoringLogin.log
-    sed -i '1idate;heure;nbrConnexion;nbrConnexionOccupe;nbrIdleUseConnexion;maxPoolSize;numUncloseOrthanConnexion;numUserPool' monitoringPoolDatabase.log
-    sed -i '1idate;heure;page;inuse;available;max' monitoringPoolPageTapestry.log
+    echo "date;dateHeure;login;ip" >> temp
+    cat monitoringLogin.log >> temp
+    mv temp monitoringLogin.log
+
+    echo "date;heure;nbrConnexion;nbrConnexionOccupe;nbrIdleUseConnexion;maxPoolSize;numUncloseOrthanConnexion;numUserPool" >> temp
+    cat monitoringPoolDatabase.log >> temp
+    mv temp monitoringPoolDatabase.log
+
+    echo "date;heure;page;inuse;available;max" >> temp
+    cat monitoringPoolPageTapestry.log >> temp
+    mv temp monitoringPoolPageTapestry.log
+
 }
 
 ##
@@ -101,9 +110,18 @@ function get_log_tomcat_2(){
         quit
 	EOF
     #Ajout des entetes aux fichiers CSV
-    sed -i '1idate;dateHeure;login;ip' monitoringLogin.log
-    sed -i '1idate;heure;nbrConnexion;nbrConnexionOccupe;nbrIdleUseConnexion;maxPoolSize;numUncloseOrthanConnexion;numUserPool' monitoringPoolDatabase.log
-    sed -i '1idate;heure;page;inuse;available;max' monitoringPoolPageTapestry.log
+    echo "date;dateHeure;login;ip" >> temp
+    cat monitoringLogin.log >> temp
+    mv temp monitoringLogin.log
+
+    echo "date;heure;nbrConnexion;nbrConnexionOccupe;nbrIdleUseConnexion;maxPoolSize;numUncloseOrthanConnexion;numUserPool" >> temp
+    cat monitoringPoolDatabase.log >> temp
+    mv temp monitoringPoolDatabase.log
+
+    echo "date;heure;page;inuse;available;max" >> temp
+    cat monitoringPoolPageTapestry.log >> temp
+    mv temp monitoringPoolPageTapestry.log
+
 }
 
 ##
@@ -124,7 +142,9 @@ function get_log_apache_1(){
 	rm -rf access.log
 	cat access_full.log | awk -F' ' '{gsub("\\[","",$4);sub(":"," ",$4); print $1";"$4";"$9";"$11";"$7}' >> access.log
 	#Ajout des entetes aux fichiers CSV
-	sed -i '1iip;date;retour;temps;page' access.log
+    echo "ip;date;retour;temps;page" >> temp
+    cat access.log >> temp
+    mv temp access.log
 }
 
 ##
@@ -145,7 +165,10 @@ function get_log_apache_2(){
 	rm -rf access.log
 	cat access_full.log | awk -F' ' '{gsub("\\[","",$4);sub(":"," ",$4); print $1";"$4";"$9";"$11";"$7}' >> access.log
 	#Ajout des entetes aux fichiers CSV
-	sed -i '1iip;date;retour;temps;page' access.log
+	echo "ip;date;retour;temps;page" >> temp
+    cat access.log >> temp
+    mv temp access.log
+
 }
 
 #########################################################################################################################
