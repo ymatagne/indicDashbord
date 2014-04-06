@@ -11,8 +11,8 @@ This application is a demo whose functionality purpose graphically view of the l
 This application performs the following actions:
 - Launch of a Expressjs server.
 - Launch of a cron:
--- Execute a shell script to retrieve the logs of the day on a SFTP server,
--- Sending an email to warn the availability of logs.
+  - Execute a shell script to retrieve the logs of the day on a SFTP server,
+  - Sending an email to warn the availability of logs.
 - Viewing logs by charts.
 
 
