@@ -26,6 +26,7 @@ Prerequisite
 ---------------------------------------
 - Clone, fork or download the source code from this Github page.
 - [Node.js](http://nodejs.org/) must be installed.
+- Add right on directory app/script in application.
 
 
 Installation for developpers
