@@ -71,14 +71,14 @@ function get_log_tomcat_1(){
 	cd ${DIR_LOG}/${DAY_DATE_DIR}/node1/
 
 	#-- Recuperation fichier via sftp --
-	sftp ${CONNEXION_SFTP} <<EOF
-        cd $sourceDir/logs_tomcat1/monitoring/*
-        get -p monitoring_app_thread_http_${DAY_DATE}.log
-        get -p monitoringLogin.log
-        get -p monitoringPoolPageTapestry.log
-        get -p monitoringPoolDatabase.log
-        quit
-	EOF
+	sftp ${CONNEXION_SFTP} << EOF
+        	cd $sourceDir/logs_tomcat1/monitoring/
+       		get -p monitoring_app_thread_http_${DAY_DATE}.log
+        	get -p monitoringLogin.log
+        	get -p monitoringPoolPageTapestry.log
+        	get -p monitoringPoolDatabase.log
+        	quit
+EOF
     #Ajout des entetes aux fichiers CSV
     echo "date;dateHeure;login;ip" >> temp
     cat monitoringLogin.log >> temp
@@ -92,6 +92,7 @@ function get_log_tomcat_1(){
     cat monitoringPoolPageTapestry.log >> temp
     mv temp monitoringPoolPageTapestry.log
 
+    mv monitoring_app_thread_http_* monitoring_app_thread_http.log
 }
 
 ##
@@ -101,14 +102,14 @@ function get_log_tomcat_2(){
     cd ${DIR_LOG}/${DAY_DATE_DIR}/node2/
 
 	#-- Recuperation fichier via sftp --
-	sftp ${CONNEXION_SFTP} <<EOF
-        cd $sourceDir/logs_tomcat2/monitoring/*
+	sftp ${CONNEXION_SFTP} << EOF
+        cd $sourceDir/logs_tomcat2/monitoring/
         get -p monitoring_app_thread_http_${DAY_DATE}.log
         get -p monitoringLogin.log
         get -p monitoringPoolPageTapestry.log
         get -p monitoringPoolDatabase.log
         quit
-	EOF
+EOF
     #Ajout des entetes aux fichiers CSV
     echo "date;dateHeure;login;ip" >> temp
     cat monitoringLogin.log >> temp
@@ -121,6 +122,8 @@ function get_log_tomcat_2(){
     echo "date;heure;page;inuse;available;max" >> temp
     cat monitoringPoolPageTapestry.log >> temp
     mv temp monitoringPoolPageTapestry.log
+
+    mv monitoring_app_thread_http_* monitoring_app_thread_http.log
 
 }
 
@@ -131,11 +134,11 @@ function get_log_apache_1(){
 	cd ${DIR_LOG}/${DAY_DATE_DIR}/node1/
 
 	#-- Recuperation fichier via sftp --
-	sftp ${CONNEXION_SFTP} <<EOF
-        cd $sourceDir/apache_logs1/*
+	sftp ${CONNEXION_SFTP} << EOF
+        cd $sourceDir/apache_logs1/
         get -p access.log
         quit
-	EOF
+EOF
 
 	# Permet de supprimer les données non utilisées dans le fichiers de log pour l'alleger
 	mv access.log access_full.log
@@ -154,11 +157,11 @@ function get_log_apache_2(){
     cd ${DIR_LOG}/${DAY_DATE_DIR}/node2/
 
 	#-- Recuperation fichier via sftp --
-	sftp ${CONNEXION_SFTP} <<EOF
-        cd $sourceDir/apache_logs2/*
+	sftp ${CONNEXION_SFTP} << EOF
+        cd $sourceDir/apache_logs2/
         get -p access.log
         quit
-	EOF
+EOF
 
 	# Permet de supprimer les données non utilisées dans le fichiers de log pour l'alleger
 	mv access.log access_full.log
@@ -181,4 +184,4 @@ get_log_tomcat_1;
 get_log_tomcat_2;
 get_log_apache_1;
 get_log_apache_2;
-exit 0;
+
