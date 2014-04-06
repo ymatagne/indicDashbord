@@ -9,17 +9,17 @@ This application is a demo whose functionality purpose graphically view of the l
 
 
 This application performs the following actions:
-        - Launch of a Expressjs server.
-        - Launch of a cron:
-                 - Execute a shell script to retrieve the logs of the day on a SFTP server,
-                 - Sending an email to warn the availability of logs.
-        - Viewing logs by charts.
+- Launch of a Expressjs server.
+- Launch of a cron:
+-- Execute a shell script to retrieve the logs of the day on a SFTP server,
+-- Sending an email to warn the availability of logs.
+- Viewing logs by charts.
 
 
 This application uses the following frameworks:
-    - [Node.js](http://nodejs.org/), [Grunt](http://gruntjs.com/), [Bower](http://bower.io/),
-    - [Express.js]() and other package (cron, nodemailler, yaml-config, ejb and i18n),
-    - [d3.js](http://d3js.org/), [jquery](http://jquery.com/), [BootStrap](http://getbootstrap.com/).
+- [Node.js](http://nodejs.org/), [Grunt](http://gruntjs.com/), [Bower](http://bower.io/),
+- [Express.js]() and other package (cron, nodemailler, yaml-config, ejb and i18n),
+- [d3.js](http://d3js.org/), [jquery](http://jquery.com/), [BootStrap](http://getbootstrap.com/).
 
 
 Prerequisite
