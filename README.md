@@ -39,8 +39,8 @@ Installation for developpers
 Email delivery and recuperation by sftp are disabled on the development version.
 
 Files to configure the application can be found here:
-    - app/locales/fr.json for Internationalization,
-    - app/settings.yml : configure application (sftp, mail ...)
+  - app/locales/fr.json for Internationalization,
+  - app/settings.yml : configure application (sftp, mail ...)
 
 Installation for production use
 ---------------------------------------
