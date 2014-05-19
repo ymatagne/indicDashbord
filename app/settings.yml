@@ -15,6 +15,26 @@ default:
   shell:
     dirFile: 'exemples'
     sftpServer: '<sftp_username>@<sftp_id>'
+  seuil:
+    indicateur3: '400'
+    indicateur4: '400'
+    indicateur5: '400'
+    indicateur6: '35'
+    indicateur7: '35'
+    indicateur8: '35'
+    indicateur9: '98%'
+    indicateur10: '2%'
+    indicateur11: '1%'
+  max:
+    indicateur3: '500'
+    indicateur4: '500'
+    indicateur5: '500'
+    indicateur6: '45'
+    indicateur7: '45'
+    indicateur8: '45'
+    indicateur9: '100%'
+    indicateur10: '0%'
+    indicateur11: '0%'
 production:
   http:
     port: 3000
@@ -32,3 +52,23 @@ production:
   shell:
     dirFile: 'exemples'
     sftpServer: '<sftp_username>@<sftp_id>'
+  seuil:
+    indicateur3: '400'
+    indicateur4: '400'
+    indicateur5: '400'
+    indicateur6: '35'
+    indicateur7: '35'
+    indicateur8: '35'
+    indicateur9: '98%'
+    indicateur10: '2%'
+    indicateur11: '1%'
+  max:
+    indicateur3: '500'
+    indicateur4: '500'
+    indicateur5: '500'
+    indicateur6: '45'
+    indicateur7: '45'
+    indicateur8: '45'
+    indicateur9: '100%'
+    indicateur10: '0%'
+    indicateur11: '0%'

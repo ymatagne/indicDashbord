@@ -66,7 +66,6 @@ d3.csv(getPathFiles('/access.log'), function (error, data) {
         .tickFormat(d3.time.format('%H h'));
 
 
-
     //ajout des axes dans le graphique
     svgApache.append('g')
         .attr('class', 'y axis')
@@ -106,8 +105,8 @@ d3.csv(getPathFiles('/access.log'), function (error, data) {
                 return '1';
             }
         })
-        .on('mouseover',function (d) {
-            displayPopin(popin, createHtmlForApachePopin(d),d3);
+        .on('mouseover', function (d) {
+            displayPopin(popin, createHtmlForApachePopin(d), d3);
         }).on('mouseout', function () {
             closePopin(popin);
         });
@@ -128,10 +127,13 @@ d3.csv(getPathFiles('/access.log'), function (error, data) {
             return d;
         }
     }).length;
-    putInResumeStat('resume_nbrRequete1s', nbrRequete1s+' (' +Math.round((parseInt(nbrRequete1s*100)/data.length)*100)/100+'%)');
-    putInResumeStat('resume_nbrRequete2s', nbrRequete2s+' (' +Math.round((parseInt(nbrRequete2s*100)/data.length)*100)/100+'%)');
-    putInResumeStat('resume_nbrRequete10s', nbrRequete10s+' (' +Math.round((parseInt(nbrRequete10s*100)/data.length)*100)/100+'%)');
+    putInResumeStat('resume_nbrRequete1s', Math.round((parseInt(nbrRequete1s * 100) / data.length) * 100) / 100 + '% / ' + nbrRequete1s);
+    putInResumeStat('resume_nbrRequete2s', Math.round((parseInt(nbrRequete2s * 100) / data.length) * 100) / 100 + '% / ' + nbrRequete2s);
+    putInResumeStat('resume_nbrRequete10s', Math.round((parseInt(nbrRequete10s * 100) / data.length) * 100) / 100 + '% / ' + nbrRequete10s);
+
     //Permet de mettre a jour la progress bar.
     progressBarEvolution(false);
+    //Permet de changer la couleur des lignes du tableau de statistiques
+    updateIndicateur();
 });
 

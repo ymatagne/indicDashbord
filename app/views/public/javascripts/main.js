@@ -18,10 +18,10 @@ function getValueOfPageName(word) {
  * Permet de retourner les fichiers present dans le cookie
  * @return {*|Array}
  */
-function getFilesInCookie(){
+function getFilesInCookie() {
     var coockietab = document.cookie.split(';')
     for (var i = 0; i < coockietab.length; i++) {
-        if(coockietab[i].split('=')[0].trim()=='files'){
+        if (coockietab[i].split('=')[0].trim() == 'files') {
             return coockietab[i].split('=')[1].split('%3B')
 
         }
@@ -96,7 +96,7 @@ function formatDateToHour(date) {
  * @return {Date}
  */
 function formatDate(date, heure) {
-    return new Date(date.substring(0, 4),parseInt(date.substring(4, 6))-1,date.substring(6, 8),heure.substring(0, 2),heure.substring(3, 5),'00','00');
+    return new Date(date.substring(0, 4), parseInt(date.substring(4, 6)) - 1, date.substring(6, 8), heure.substring(0, 2), heure.substring(3, 5), '00', '00');
 }
 
 
@@ -241,14 +241,52 @@ function createHtmlForJdbcPopin(x, xPos, valueYNbrConnexion, valueYNbrConnexionO
  * @param value chargement de la barre
  */
 function progressBarEvolution(value) {
-    if(value){
+    if (value) {
         $('.filter').css('visibility', 'visible');
         $('#progressBar').css('visibility', 'visible');
         $('.progress-bar').css('width', '100%');
-        $('.progress-bar').css('height','20px');
-    }else{
+        $('.progress-bar').css('height', '20px');
+    } else {
         $('.filter').css('visibility', 'hidden');
         $('#progressBar').css('visibility', 'hidden');
     }
+}
+
+/**
+ * Permet de mettre a jour le tableau de statistique sur la page d'accueil dans le but d'afficher si des seuils sont depassées
+ */
+function updateIndicateur() {
+    $('.table tbody tr').each(function (index) {
+        var valeur = NaN;
+        var seuil = NaN;
+        var indicateurPourcentageRequetes = false;
+        $(this).find('td').each(function (index) {
+            if (index == 0 && $(this).text().trim() == '7') {
+                indicateurPourcentageRequetes = true;
+            }
+            if (index == 2) {
+                valeur = parseFloat($(this).text().trim(), 10);
+            }
+            if (index == 3) {
+                seuil = parseFloat($(this).text(), 10);
+            }
+        });
+        if (!isNaN(seuil)) {
+            $(this).css('font-weight', 'bolder');
+            if (indicateurPourcentageRequetes) {
+                if (valeur >= seuil) {
+                    $(this).css('color', 'green');
+                } else {
+                    $(this).css('color', 'red');
+                }
+            } else {
+                if (valeur <= seuil) {
+                    $(this).css('color', 'green');
+                } else {
+                    $(this).css('color', 'red');
+                }
+            }
+        }
+    });
 }
 

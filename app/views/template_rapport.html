@@ -55,9 +55,12 @@
 </ul>
 
 <div class="tab-content">
+<div class="tab-pane active" id="statistique">
 
-    <div class="tab-pane active" id="statistique">
-        <div class="panel panel-default">
+    <h3><%= __('template.indicateur1')%> <span  id="resume_nbrUsersMax" class="label label-info"></span></h3>
+    <h3><%= __('template.indicateur2')%> <span id="resume_nbrUsersHourMax" class="label label-info"></span></h3>
+
+    <div class="panel panel-default">
             <!-- Default panel contents -->
             <div class="panel-heading"><%= __('template.head')%></div>
 
@@ -68,97 +71,103 @@
                     <th>#</th>
                     <th><%= __('template.col1')%></th>
                     <th><%= __('template.col2')%></th>
+                    <th><%= __('template.col3')%></th>
+                    <th><%= __('template.col4')%></th>
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr>
                     <td>1</td>
-                    <td><%= __('template.indicateur1')%></td>
-                    <td>
-                        <div id="resume_nbrUsersMax"></div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><%= __('template.indicateur2')%></td>
-                    <td>
-                        <div id="resume_nbrUsersHourMax"></div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>3</td>
                     <td><%= __('template.indicateur3')%></td>
                     <td>
                         <div id="resume_nbrTapestryMax"></div>
                     </td>
-
+                    <td id="seuil_nbrTapestryMax"><%=seuilIndicateur3%></td>
+                    <td id="max_nbrTapestryMax"><%=maxIndicateur3%></td>
                 </tr>
+
                 <tr>
-                    <td>4</td>
-                    <td><%= __('template.indicateur4')%></td>
+                    <td>2</td>
+                    <td ><%= __('template.indicateur4')%></td>
                     <td>
                         <div id="resume_nbrThreadBusyMax"></div>
                     </td>
-
+                    <td id="seuil_nbrThreadBusyMax"><%=seuilIndicateur4%></td>
+                    <td id="max_nbrThreadBusyMax"><%=maxIndicateur4%></td>
                 </tr>
+
                 <tr>
-                    <td>5</td>
+                    <td>3</td>
                     <td><%= __('template.indicateur5')%></td>
                     <td>
                         <div id="resume_nbrThreadUtilise"></div>
                     </td>
-
+                    <td id="seuil_nbrThreadUtilise"><%=seuilIndicateur5%></td>
+                    <td id="max_nbrThreadUtilise"><%=maxIndicateur5%></td>
                 </tr>
+
                 <tr>
-                    <td>6</td>
+                    <td>4</td>
                     <td><%= __('template.indicateur6')%></td>
                     <td>
                         <div id="resume_nbrMaxConnexionJDBC"></div>
                     </td>
-
+                    <td id="seuil_nbrMaxConnexionJDBC"><%=seuilIndicateur6%></td>
+                    <td id="max_nbrMaxConnexionJDBC"><%=maxIndicateur6%></td>
                 </tr>
+
                 <tr>
-                    <td>7</td>
+                    <td>5</td>
                     <td><%= __('template.indicateur7')%></td>
                     <td>
                         <div id="resume_nbrMaxConnexionIdle"></div>
                     </td>
-
+                    <td id="seuil_nbrMaxConnexionIdle"><%=seuilIndicateur7%></td>
+                    <td id="max_nbrMaxConnexionIdle"><%=maxIndicateur7%></td>
                 </tr>
+
                 <tr>
-                    <td>8</td>
+                    <td>6</td>
                     <td><%= __('template.indicateur8')%></td>
                     <td>
                         <div id="resume_nbrMaxConnexionBusy"></div>
                     </td>
+                    <td id="seuil_nbrMaxConnexionBusy"><%=seuilIndicateur8%></td>
+                    <td id="max_nbrMaxConnexionBusy"><%=maxIndicateur8%></td>
+
+                </tr>
+
+                <tr>
+                    <td>7</td>
+                    <td><%= __('template.indicateur9')%></td>
+                    <td>
+                        <div id="resume_nbrRequete1s"></div>
+                    </td>
+                    <td id="seuil_nbrRequete1s"><%=seuilIndicateur9%></td>
+                    <td id="max_nbrRequete1s"><%=maxIndicateur9%></td>
+
+                </tr>
+
+                <tr>
+                    <td>8</td>
+                    <td><%= __('template.indicateur10')%></td>
+                    <td>
+                        <div id="resume_nbrRequete2s"></div>
+                    </td>
+                    <td  id="seuil_nbrRequete2s"><%=seuilIndicateur10%></td>
+                    <td id="max_nbrRequete2s"><%=maxIndicateur10%></td>
 
                 </tr>
 
                 <tr>
                     <td>9</td>
-                    <td><%= __('template.indicateur9')%></td>
-                    <td>
-                        <div id="resume_nbrRequete1s"></div>
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td><%= __('template.indicateur10')%></td>
-                    <td>
-                        <div id="resume_nbrRequete2s"></div>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <td>11</td>
                     <td><%= __('template.indicateur11')%></td>
                     <td>
                         <div id="resume_nbrRequete10s"></div>
                     </td>
+                    <td  id="seuil_nbrRequete10s"><%=seuilIndicateur11%></td>
+                    <td id="max_nbrRequete10s"><%=maxIndicateur11%></td>
 
                 </tr>
                 </tbody>

@@ -64,6 +64,32 @@ d3.csv(getPathFiles('/monitoringLogin.log'), function (error, data) {
         })
         .map(data)));
 
+    var maxAxeYUsers = d3.max(d3.values(d3.nest()
+        .key(function (d) {
+            return d.heure;
+        })
+        .rollup(function (v) {
+            return v.length;
+        })
+        .map( data.filter(function (d) {
+            if (!d.bot) {
+                return d;
+            }
+        }))));
+
+    var maxAxeYBots = d3.max(d3.values(d3.nest()
+        .key(function (d) {
+            return d.heure;
+        })
+        .rollup(function (v) {
+            return v.length;
+        })
+        .map( data.filter(function (d) {
+            if (d.bot) {
+                return d;
+            }
+        }))));
+
     //calcul du nombre d'utilisateur Max
     var total = d3.max(d3.values(d3.nest()
         .key(function (d) {
@@ -133,9 +159,9 @@ d3.csv(getPathFiles('/monitoringLogin.log'), function (error, data) {
         .attr('class', 'titleConnexions')
         .attr('dy', '0.5em')
         .text('Tous : ' + total)
-        .on('mouseover',function () {
+        .on('mouseover', function () {
             displayPopin(popin, 'Cliquez sur un titre pour filtrer', d3);
-        }).on('mouseout',function () {
+        }).on('mouseout', function () {
             closePopin(popin);
         }).on('click', function () {
             updateGraphique('#tous');
@@ -144,9 +170,9 @@ d3.csv(getPathFiles('/monitoringLogin.log'), function (error, data) {
         .attr('class', 'titleConnexions')
         .attr('dy', '1.5em')
         .text('Nb utilisateurs : ' + totalUser)
-        .on('mouseover',function () {
+        .on('mouseover', function () {
             displayPopin(popin, 'Correspond au cercle vert', d3);
-        }).on('mouseout',function () {
+        }).on('mouseout', function () {
             closePopin(popin);
         }).on('click', function () {
             updateGraphique('#user');
@@ -155,9 +181,9 @@ d3.csv(getPathFiles('/monitoringLogin.log'), function (error, data) {
         .attr('class', 'titleConnexions')
         .attr('dy', '2.5em')
         .text('Nb bots : ' + totalBot)
-        .on('mouseover',function () {
+        .on('mouseover', function () {
             displayPopin(popin, 'Correspond au cercle violet', d3);
-        }).on('mouseout',function () {
+        }).on('mouseout', function () {
             closePopin(popin);
         }).on('click', function () {
             updateGraphique('#bot');
@@ -291,15 +317,15 @@ d3.csv(getPathFiles('/monitoringLogin.log'), function (error, data) {
                     return '#2fe379';
                 }
             })
-            .on('mouseover',function (d) {
+            .on('mouseover', function (d) {
                 displayPopin(popin, createHtmlForLoginPopin(d), d3);
             }).on('mouseout', function () {
                 closePopin(popin);
             });
 
         //Ajout des valeurs dans le tableau des statistiques
-        putInResumeStat('resume_nbrUsersMax', total);
-        putInResumeStat('resume_nbrUsersHourMax', maxAxeY);
+        putInResumeStat('resume_nbrUsersMax', totalUser + ' / ' + totalBot);
+        putInResumeStat('resume_nbrUsersHourMax', maxAxeYUsers + ' / ' + maxAxeYBots);
 
 
     }
